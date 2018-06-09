@@ -30,7 +30,7 @@ public class MainClass {
 //        }
 
 
-        String filepath = "C:\\Users\\javidan.hajizada\\IdeaProjects\\RestProject\\filename.txt";
+        String filepath = "/Users/cobik99/Desktop/filename.txt";
         File file = new File(filepath);
 
         Scanner scanner  = new Scanner(file);
@@ -44,21 +44,24 @@ public class MainClass {
             Pattern pattern2 = Pattern.compile("^\\w");
 
 
-            Matcher matcher = pattern2.matcher(scanner.nextLine());
+            Matcher matcher = pattern.matcher(scanner.nextLine());
 
 //            if(scanner.nextLine().matches("[-]?[0-9]+(.[0-9]+)?")){
 //                System.out.println(scanner.nextLine());
 //            }
 //
 
-            if (matcher.find()){
-                System.out.println(matcher.group());
+
+
+            if (matcher.find()){ //esli naxodit cislo v stroke to videlayet tekst iz stroki otdelno
+                System.out.println(matcher.group());//cisla
+                System.out.println(matcher.replaceAll(""));//tekst(vopros)
 
             }
             //System.out.println(matcher1.group());
 
         }
-            scanner.close();
+            scanner.close();//zakrivayu scanner
 
 
 

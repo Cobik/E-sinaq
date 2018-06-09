@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="com.javidone.restproject" />
         <module name="RestProject" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.javidone.restproject" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
