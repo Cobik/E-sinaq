@@ -9,8 +9,9 @@ public class MainClass {
 
     public static void main(String[] args) throws IOException {
 
+        JFilechooser filechooser = new JFilechooser();
         PdfManager pdfManager = new PdfManager();
-        pdfManager.setFilePath("C:\\Users\\javidan.hajizada\\Desktop\\test.pdf");
+        pdfManager.setFilePath(filechooser.getName());
 
       //  System.out.println(pdfManager.ToText());
 

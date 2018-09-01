@@ -10,8 +10,5 @@
         <module name="RestProject" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="com.javidone.restproject" target="7" />
-    </bytecodeTargetLevel>
   </component>
 </project>
