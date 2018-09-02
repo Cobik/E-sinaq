@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -11,10 +12,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class JFilechooser extends JFrame {
 
-    public JFilechooser() {
+    PdfParser pdfParser = new PdfParser();
+
+    public  JFilechooser() {
         super("Тестовое окно");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -32,16 +36,38 @@ public class JFilechooser extends JFrame {
         JButton button = new JButton("Показать JFileChooser");
         button.setAlignmentX(CENTER_ALIGNMENT);
 
+
+
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileopen = new JFileChooser();
+                final JFileChooser fileopen = new JFileChooser();
+
+
+                //pdf-filter
+                fileopen.addChoosableFileFilter(new FileNameExtensionFilter("*.pdf", "pdf"));
+
+                //FileChooserDialog
                 int ret = fileopen.showDialog(null, "Открыть файл");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     File file = fileopen.getSelectedFile();
+
                     label.setText(file.getName());
+
+                    //Pdf_Parser_to_text
+                    try {
+                        pdfParser.ParsePdftoText(file.getPath());
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
+
                 }
+
+
             }
         });
+
+
+
 
         panel.add(button);
         panel.add(Box.createVerticalGlue());
@@ -51,15 +77,22 @@ public class JFilechooser extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+
     }
 
+
+
     public static void main(String[] args) {
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 JFrame.setDefaultLookAndFeelDecorated(true);
                 JDialog.setDefaultLookAndFeelDecorated(true);
                 new JFilechooser();
+
             }
         });
     }
+
 }
